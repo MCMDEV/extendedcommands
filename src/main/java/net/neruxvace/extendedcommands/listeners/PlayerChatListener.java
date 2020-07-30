@@ -2,6 +2,7 @@ package net.neruxvace.extendedcommands.listeners;
 
 import net.neruxvace.extendedcommands.ExtendedCommands;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +34,7 @@ public class PlayerChatListener implements Listener {
             player.sendMessage("§aBefehl: §e" + stringBuilder.toString());
             player.sendMessage("§aDu kannst deinen Befehl nun vervollständigen oder noch weiter verlängern!");
         }   else    {
-            final String finalCommand = (plugin.getCommandMap().get(player.getUniqueId()).toString() + command).substring(1);
+            final String finalCommand = ChatColor.stripColor((plugin.getCommandMap().get(player.getUniqueId()).toString() + command).substring(1));
             plugin.getCommandMap().remove(player.getUniqueId());
 
             if(finalCommand.length() > plugin.getMaxLength())   {
