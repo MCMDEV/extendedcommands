@@ -35,6 +35,12 @@ public class PlayerChatListener implements Listener {
         }   else    {
             final String finalCommand = (plugin.getCommandMap().get(player.getUniqueId()).toString() + command).substring(1);
             plugin.getCommandMap().remove(player.getUniqueId());
+
+            if(finalCommand.length() > plugin.getMaxLength())   {
+                player.sendMessage("§cDer Command wurde nicht ausgeführt, da er das Limit von " + plugin.getMaxLength() + " Zeichen überschreitet.");
+                return;
+            }
+
             Bukkit.getScheduler().runTask(plugin, new Runnable() {
                 public void run() {
                     Bukkit.getServer().dispatchCommand(player, finalCommand);

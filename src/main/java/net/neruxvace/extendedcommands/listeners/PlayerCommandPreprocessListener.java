@@ -27,6 +27,11 @@ public class PlayerCommandPreprocessListener implements Listener {
             return;
         }
 
+        if(!player.hasPermission("extendedcommands.extendedlength"))    {
+            player.sendMessage("§cDir fehlt dazu die benötigte Berechtigung!");
+            return;
+        }
+
         String realCommand = command.substring(0, command.length() - 2);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(realCommand);
